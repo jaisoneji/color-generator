@@ -82,6 +82,10 @@ body {
     margin: auto;
     width: 100%
   }
+
+  .color-value{
+    font-size: .75rem;
+  }
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -98,4 +102,8 @@ body {
 
 .col-md-2 {
   cursor: default;
+}
+
+.color-value {
+  font-size: 1.5rem;
 }
