@@ -73,21 +73,6 @@ body {
   width: 75%
 }
 
-@media (max-width: 768px) {
-  .row {
-    width: 100%
-  }
-
-  .alert {
-    margin: auto;
-    width: 100%
-  }
-
-  .color-value{
-    font-size: .75rem;
-  }
-}
-
 .navbar-dark .navbar-nav .nav-link {
   color: lightgray;
 }
@@ -106,4 +91,19 @@ body {
 
 .color-value {
   font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .row {
+    width: 100%
+  }
+
+  .alert {
+    margin: auto;
+    width: 100%
+  }
+
+  .color-value{
+    font-size: .75rem;
+  }
 }
