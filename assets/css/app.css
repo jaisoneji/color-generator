@@ -31,10 +31,6 @@ body {
   justify-content: center
 }
 
-.color-column, .color-column-labels {
-  font-size: 1.25rem;
-}
-
 .color-column-toolbar {
   font-size: .8rem;
   position: absolute;
@@ -89,7 +85,7 @@ body {
   cursor: default;
 }
 
-.color-value {
+.color-value, .color-rgb-label, .color-hex-label, .color-cmyk-label {
   font-size: 1.5rem;
 }
 
@@ -103,7 +99,13 @@ body {
     width: 100%
   }
 
-  .color-value{
-    font-size: .75rem;
+  .color-value, .color-rgb-label, .color-hex-label, .color-cmyk-label {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .color-value, .color-rgb-label, .color-hex-label, .color-cmyk-label {
+    font-size: 1rem;
   }
 }
