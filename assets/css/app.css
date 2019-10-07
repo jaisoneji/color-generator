@@ -23,7 +23,7 @@ body {
   width: 75%
 }
 
-.col-md-2 {
+.col-lg-2 {
   align-items: center;
   color: black;
   display: flex;
@@ -81,7 +81,7 @@ body {
   opacity: 1;
 }
 
-.col-md-2 {
+.col-lg-2 {
   cursor: default;
 }
 
