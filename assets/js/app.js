@@ -117,6 +117,32 @@ function init() {
   $(".color-column-regenerate").click(function(e) {
     generate($(e.target).parent().parent());
   });
+
+  $("#submitNewColor").click(function(e) {
+    setNewColor(getNewColor(e));
+  });
+}
+
+function setNewColor(values) {
+  $("#editColorModal").modal("show");
+  var column = $(".color-column:eq(" + (parseInt(values[1]) - 1) + ")");
+  var rgb = JSON.parse("[" + values[0] + "]");
+  $(column).find(".color-rgb").text(`(${rgb})`);
+  $(column).find(".color-hex").text("#" + getHex(rgb));
+  $(column).find(".color-cmyk").text(`(${getCMYK(rgb)})`);
+  $(column).css("background-color", `rgb(${rgb})`);
+  if (getContrast(rgb) < 123) {
+    $(column).addClass("text-white");
+  } else {
+    $(column).removeClass("text-white");
+  }
+}
+
+function getNewColor(e) {
+  var string = $(e.target).closest(".modal-content").find("input").val();
+  var newString = string.replace("(", "").replace(")", "").replace("rgb", "");
+  var column = $(e.target).closest(".modal-content").find("select option:selected").text();
+  return [newString, column];
 }
 
 function switchTheme() {
