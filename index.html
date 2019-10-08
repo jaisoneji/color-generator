@@ -20,6 +20,9 @@
         <a class="nav-link" href="https://github.com/r0b0-s1av3/color-generator" title="View on Github"><i class="fab fa-github mx-2"></i></a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#editColorModal" title="Edit Color"><i class="fas fa-edit mx-2"></i></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="#" onclick="regenerate()" title="Regenerate Colours"><i class="fas fa-redo text-success mx-2"></i></a>
       </li>
       <li class="nav-item">
@@ -85,8 +88,45 @@
     </div>
   </div>
 
+  <!-- Color Editing Modal -->
+  <div class="modal fade" id="editColorModal" tabindex="-1" role="dialog" aria-labelledby="editColorModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editColorModalTitle">Add RGB Color</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="inputColor">New Color</label>
+            <input type="text" class="form-control" id="inputColor" aria-describedby="inputHelp" placeholder="rgb(15,200,60)" />
+            <small id="inputHelp" class="form-text text-muted">You must input a valid RGB color value.</small>
+          </div>
+          <div class="form-group">
+            <label for="inputColumn">Column to Change</label>
+            <select class="form-control" id="inputColumn">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="submitNewColor">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="./assets/js/app.js"></script>
 </body>
 
