@@ -82,6 +82,29 @@ function copy(type, text) {
   document.execCommand("copy");
   $tempTextField.remove();
 }
+// Add to FAvorite
+function addToFavorite(elements) {
+  elements.each(function(index, column) {
+    
+    var rval=$(column).find(".color-rgb").text();
+    var hval=$(column).find(".color-hex").text();
+    var cval=$(column).find(".color-cmyk").text();
+    
+    if (typeof(Storage) !== "undefined") {
+      // Store
+      localStorage.setItem("RGB",rval);
+      localStorage.setItem("HEX",hval);
+      localStorage.setItem("CMYK",cval);
+      // alert(localStorage.getItem("RGB"));
+      // Retrieve
+      document.getElementById("result-rgb").innerText = localStorage.getItem("RGB");
+      document.getElementById("result-hex").innerText = localStorage.getItem("HEX");
+      document.getElementById("result-cmyk").innerText = localStorage.getItem("CMYK");
+    } else {
+      document.getElementById("result-rgb").innerHTML = "Sorry, your browser does not support Web Storage...";
+    }
+  });
+}
 
 function showToast() {
   var alert = "<div class='alert alert-success' role='alert'>Color code copied to clipboard.</div>";
@@ -96,11 +119,21 @@ function showToast() {
 function init() {
   regenerate();
 
+  $(document).ready(function(){
+    $(".favorites").click(function(e) {
+      // var text = $(e.target).text();
+      addToFavorite($(e.target).parent());
+    });
+    $("#heart").click(function() {
+      $(".favorite-section").css({"display":"block"});
+    });
+  });
   $(".color-value").click(function(e) {
     var text = $(e.target).text();
     copy($(e.target).data("format"), text);
     showToast();
   });
+  
 
   $(".color-column-lock").click(function(e) {
     var icon = $(e.target);
@@ -117,32 +150,6 @@ function init() {
   $(".color-column-regenerate").click(function(e) {
     generate($(e.target).parent().parent());
   });
-
-  $("#submitNewColor").click(function(e) {
-    setNewColor(getNewColor(e));
-  });
-}
-
-function setNewColor(values) {
-  $("#editColorModal").modal("show");
-  var column = $(".color-column:eq(" + (parseInt(values[1]) - 1) + ")");
-  var rgb = JSON.parse("[" + values[0] + "]");
-  $(column).find(".color-rgb").text(`(${rgb})`);
-  $(column).find(".color-hex").text("#" + getHex(rgb));
-  $(column).find(".color-cmyk").text(`(${getCMYK(rgb)})`);
-  $(column).css("background-color", `rgb(${rgb})`);
-  if (getContrast(rgb) < 123) {
-    $(column).addClass("text-white");
-  } else {
-    $(column).removeClass("text-white");
-  }
-}
-
-function getNewColor(e) {
-  var string = $(e.target).closest(".modal-content").find("input").val();
-  var newString = string.replace("(", "").replace(")", "").replace("rgb", "");
-  var column = $(e.target).closest(".modal-content").find("select option:selected").text();
-  return [newString, column];
 }
 
 function switchTheme() {
